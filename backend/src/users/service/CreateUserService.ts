@@ -2,6 +2,7 @@ import { User } from "../entity/User";
 import { ICreateUserDTO } from "../dto/ICreateUserDTO";
 import { IUsersRepository } from "../repository/IUsersRepository";
 import { UsersRepository } from "../repository/UsersRepository";
+import { AppError } from "../../AppError";
 
 export class CreateUserService {
   private usersRepository: IUsersRepository
@@ -19,6 +20,10 @@ export class CreateUserService {
     RA,
     CPF
   }: ICreateUserDTO): Promise<User> {
+    const findUserByEmail = await this.usersRepository.findByEmail(email)
+
+    if(findUserByEmail) throw new AppError('This email is already used')
+
     const user = await this.usersRepository.create({
       name,
       email,
