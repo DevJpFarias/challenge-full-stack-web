@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import 'express-async-errors'
 import express, { NextFunction, Request, Response } from 'express'
 import { userRouter } from './routes/users.routes'
 import { AppDataSource } from './data-source'
