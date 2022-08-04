@@ -38,4 +38,8 @@ export class FakeStudentsRepository implements IStudentsRepository {
   async findByCPF(CPF: string): Promise<Student> {
     return this.repository.find(student => student.CPF === CPF)
   }
+
+  async listAll(): Promise<Student[]> {
+    return this.repository.map(users => users)
+  }
 }

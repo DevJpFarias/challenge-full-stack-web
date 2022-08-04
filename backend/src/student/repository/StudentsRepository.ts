@@ -53,4 +53,10 @@ export class StudentsRepository implements IStudentsRepository {
 
     return student
   }
+
+  async listAll(): Promise<Student[]> {
+    const students = await this.ormRepository.find()
+
+    return students
+  }
 }

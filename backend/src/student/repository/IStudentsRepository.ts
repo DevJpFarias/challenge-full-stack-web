@@ -6,4 +6,5 @@ export interface IStudentsRepository {
   findByEmail(email: string): Promise<Student>
   findByRA(RA: number): Promise<Student>
   findByCPF(CPF: string): Promise<Student>
+  listAll(): Promise<Student[]>
 }
