@@ -33,4 +33,14 @@ export class UsersRepository implements IUsersRepository {
 
     return user
   }
+
+  async findByRA(RA: number): Promise<User> {
+    const user = await this.ormRepository.findOne({
+      where: {
+        RA
+      }
+    })
+
+    return user
+  }
 }

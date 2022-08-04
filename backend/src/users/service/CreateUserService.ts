@@ -24,6 +24,10 @@ export class CreateUserService {
 
     if(findUserByEmail) throw new AppError('This email is already used')
 
+    const findUserByRA = await this.usersRepository.findByRA(RA)
+
+    if(findUserByRA) throw new AppError('This RA already exists')
+
     const user = await this.usersRepository.create({
       name,
       email,
