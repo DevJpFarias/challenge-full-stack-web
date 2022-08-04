@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { User } from "./users/entity/User"
+import { Student } from "./student/entity/Student"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
     password: "admin",
     database: "challenge-full-stack-web",
     synchronize: true,
-    entities: [User],
+    entities: [Student],
     migrations: [
         'src/migration/*.ts'
     ]

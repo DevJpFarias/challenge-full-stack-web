@@ -1,4 +1,4 @@
-export interface ICreateUserDTO {
+export interface ICreateStudentDTO {
   name: string
   email: string
   RA: number
