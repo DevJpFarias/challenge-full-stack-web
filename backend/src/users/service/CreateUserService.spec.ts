@@ -45,4 +45,26 @@ describe('Create User Test', () => {
 
     }).rejects.toBeInstanceOf(AppError)
   })
+
+  it('Should not be able to create a new user with an existent RA', async () => {
+    expect(async () => {
+      const first_data = {
+        name: 'João Paulo',
+        email: 'joaopaulo@mail.com',
+        RA: 1234,
+        CPF: '999.999.999-99'
+      }
+
+      const second_data = {
+        name: 'João Paulo',
+        email: 'joaopaulo2@mail.com',
+        RA: 1234,
+        CPF: '999.888.999-88'
+      }
+
+      await createUserService.execute(first_data)
+      await createUserService.execute(second_data)
+
+    }).rejects.toBeInstanceOf(AppError)
+  })
 })
