@@ -28,6 +28,10 @@ export class CreateUserService {
 
     if(findUserByRA) throw new AppError('This RA already exists')
 
+    const findUserByCPF = await this.usersRepository.findByCPF(CPF)
+
+    if(findUserByCPF) throw new AppError('This CPF is already used')
+
     const user = await this.usersRepository.create({
       name,
       email,

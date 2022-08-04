@@ -34,4 +34,8 @@ export class FakeUsersRepository implements IUsersRepository {
   async findByRA(RA: number): Promise<User> {
     return this.repository.find(user => user.RA === RA)
   }
+
+  async findByCPF(CPF: string): Promise<User> {
+    return this.repository.find(user => user.CPF === CPF)
+  }
 }

@@ -43,4 +43,14 @@ export class UsersRepository implements IUsersRepository {
 
     return user
   }
+
+  async findByCPF(CPF: string): Promise<User> {
+    const user = await this.ormRepository.findOne({
+      where: {
+        CPF
+      }
+    })
+
+    return user
+  }
 }
