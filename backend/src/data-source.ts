@@ -9,7 +9,6 @@ export const AppDataSource = new DataSource({
     username: "admin",
     password: "admin",
     database: "challenge-full-stack-web",
-    synchronize: true,
     entities: [Student],
     migrations: [
         'src/migration/*.ts'
