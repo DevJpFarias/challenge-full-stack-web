@@ -1,5 +1,5 @@
 import { ICreateStudentDTO } from "../dto/ICreateStudentDTO";
-import { Student } from "../entity/Student";
+import { Student } from "../infra/typeorm/entity/Student";
 
 export interface IStudentsRepository {
   create(data: ICreateStudentDTO): Promise<Student>

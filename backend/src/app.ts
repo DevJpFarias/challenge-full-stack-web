@@ -1,9 +1,9 @@
 import 'reflect-metadata'
 import 'express-async-errors'
 import express, { NextFunction, Request, Response } from 'express'
-import { studentRouter } from './routes/student.routes'
-import { AppDataSource } from './data-source'
-import { AppError } from './AppError'
+import { studentRouter } from './modules/student/infra/http/routes/student.routes'
+import { AppDataSource } from './shared/connections/data-source'
+import { AppError } from './shared/erros/AppError'
 
 AppDataSource.initialize()
 

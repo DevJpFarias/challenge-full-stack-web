@@ -1,10 +1,9 @@
-import { Student } from "../../entity/Student";
-import { IStudentsRepository } from "../../repository/IStudentsRepository";
-import { StudentsRepository } from "../../repository/StudentsRepository";
+import { Student } from "../../infra/typeorm/entity/Student";
+import { IStudentsRepository } from "../../repositories/IStudentsRepository";
+import { StudentsRepository } from "../../infra/typeorm/repositories/StudentsRepository";
 
-export class InactivateStudentService {
+export class DeleteStudentService {
   private studentsRepository: IStudentsRepository
-
   constructor (repository: IStudentsRepository) {
     this.studentsRepository = repository
     if(!repository) {
@@ -12,9 +11,11 @@ export class InactivateStudentService {
     }
   }
 
-  async execute(id: string): Promise<void> {
+  async execute(id: string): Promise<Student> {
     const student = await this.studentsRepository.findById(id)
 
     await this.studentsRepository.inactivate(student)
+
+    return student
   }
 }

@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
-import { AppDataSource } from "../../data-source";
+import { AppDataSource } from "../../../../../shared/connections/data-source";
 import { Student } from "../entity/Student";
-import { ICreateStudentDTO } from "../dto/ICreateStudentDTO";
-import { IStudentsRepository } from "./IStudentsRepository";
+import { ICreateStudentDTO } from "../../../dto/ICreateStudentDTO";
+import { IStudentsRepository } from "../../../repositories/IStudentsRepository";
 
 export class StudentsRepository implements IStudentsRepository {
   private ormRepository: Repository<Student>

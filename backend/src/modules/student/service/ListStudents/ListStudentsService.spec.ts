@@ -1,4 +1,4 @@
-import { FakeStudentsRepository } from "../../repository/FakeStudentsRepository"
+import { FakeStudentsRepository } from "../../repositories/FakeStudentsRepository"
 import { CreateStudentService } from "../CreateStudent/CreateStudentService"
 import { InactivateStudentService } from "../InactivateStudent/InactivateStudentService"
 import { ListStudentsService } from "./ListStudentsService"

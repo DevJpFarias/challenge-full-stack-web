@@ -1,6 +1,6 @@
 import { ICreateStudentDTO } from "../dto/ICreateStudentDTO";
 import { IStudentsRepository } from "./IStudentsRepository";
-import { Student } from "../entity/Student";
+import { Student } from "../infra/typeorm/entity/Student";
 import { randomUUID } from 'node:crypto'
 import { IUpdateStudentDTO } from "../dto/IUpdateStudentDTO";
 

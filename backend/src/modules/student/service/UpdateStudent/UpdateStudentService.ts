@@ -1,7 +1,7 @@
-import { AppError } from "../../../AppError";
-import { Student } from "../../entity/Student";
-import { IStudentsRepository } from "../../repository/IStudentsRepository";
-import { StudentsRepository } from "../../repository/StudentsRepository";
+import { AppError } from "../../../../shared/erros/AppError";
+import { Student } from "../../infra/typeorm/entity/Student";
+import { IStudentsRepository } from "../../repositories/IStudentsRepository";
+import { StudentsRepository } from "../../infra/typeorm/repositories/StudentsRepository";
 
 export class UpdateStudentService {
   private studentsRepository: IStudentsRepository

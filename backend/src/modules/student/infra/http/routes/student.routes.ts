@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { CreateStudentController } from "../student/controller/CreateStudentController";
-import { InactivateStudentController } from "../student/controller/InactivateStudentController";
-import { ListStudentsController } from "../student/controller/ListStudentsController";
-import { UpdateStudentController } from "../student/controller/UpdateStudentController";
+import { CreateStudentController } from "../controllers/CreateStudentController";
+import { InactivateStudentController } from "../controllers/InactivateStudentController";
+import { ListStudentsController } from "../controllers/ListStudentsController";
+import { UpdateStudentController } from "../controllers/UpdateStudentController";
 
 export const studentRouter = Router()
 const createStudentController = new CreateStudentController()

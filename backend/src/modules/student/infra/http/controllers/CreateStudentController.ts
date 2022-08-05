@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { StudentsRepository } from "../repository/StudentsRepository";
-import { CreateStudentService } from "../service/CreateStudent/CreateStudentService";
+import { StudentsRepository } from "../../typeorm/repositories/StudentsRepository";
+import { CreateStudentService } from "../../../service/CreateStudent/CreateStudentService";
 
 const studentsRepository = new StudentsRepository()
 
