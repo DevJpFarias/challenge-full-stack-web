@@ -31,7 +31,7 @@ export class CreateStudent1659539006027 implements MigrationInterface {
                         type: 'varchar'
                     },
                     {
-                        name: 'Inactivated',
+                        name: 'inactivated',
                         type: 'boolean',
                         default: false
                     }

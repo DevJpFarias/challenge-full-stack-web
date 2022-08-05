@@ -18,5 +18,5 @@ export class Student {
   CPF: string
 
   @Column({ default: false })
-  Inactivated: boolean
+  inactivated: boolean
 }
