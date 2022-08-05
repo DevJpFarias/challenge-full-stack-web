@@ -55,7 +55,11 @@ export class StudentsRepository implements IStudentsRepository {
   }
 
   async listAll(): Promise<Student[]> {
-    const students = await this.ormRepository.find()
+    const students = await this.ormRepository.find({
+      where: {
+        inactivated: false
+      }
+    })
 
     return students
   }
@@ -77,7 +81,7 @@ export class StudentsRepository implements IStudentsRepository {
   }
 
   async inactivate(student: Student): Promise<void> {
-    student.Inactivated = true
+    student.inactivated = true
 
     await this.ormRepository.save(student)
   }

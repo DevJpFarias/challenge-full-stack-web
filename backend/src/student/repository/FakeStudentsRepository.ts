@@ -20,7 +20,8 @@ export class FakeStudentsRepository implements IStudentsRepository {
       name,
       email,
       RA,
-      CPF
+      CPF,
+      inactivated: false
     })
 
     this.repository.push(student)
@@ -41,7 +42,9 @@ export class FakeStudentsRepository implements IStudentsRepository {
   }
 
   async listAll(): Promise<Student[]> {
-    return this.repository.map(students => students)
+    const students = this.repository.filter(student => student.inactivated === false)
+
+    return students
   }
 
   async update({id, name, email}: IUpdateStudentDTO): Promise<Student> {
@@ -62,6 +65,6 @@ export class FakeStudentsRepository implements IStudentsRepository {
   async inactivate(student: Student): Promise<void> {
     const studentIndex = this.repository.findIndex(delete_student => delete_student.id === student.id)
 
-    this.repository[studentIndex].Inactivated = true
+    this.repository[studentIndex].inactivated = true
   }
 }
