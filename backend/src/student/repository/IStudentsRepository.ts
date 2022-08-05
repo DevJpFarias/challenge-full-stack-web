@@ -9,4 +9,5 @@ export interface IStudentsRepository {
   listAll(): Promise<Student[]>
   update(student: Student): Promise<Student>
   findById(id: string): Promise<Student>
+  inactivate(student: Student): Promise<void>
 }

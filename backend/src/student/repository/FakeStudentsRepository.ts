@@ -58,4 +58,10 @@ export class FakeStudentsRepository implements IStudentsRepository {
   async findById(id: string): Promise<Student> {
     return this.repository.find(student => student.id === id)
   }
+
+  async inactivate(student: Student): Promise<void> {
+    const studentIndex = this.repository.findIndex(delete_student => delete_student.id === student.id)
+
+    this.repository[studentIndex].Inactivated = true
+  }
 }

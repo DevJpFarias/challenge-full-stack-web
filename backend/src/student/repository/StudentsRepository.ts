@@ -75,4 +75,10 @@ export class StudentsRepository implements IStudentsRepository {
 
     return student
   }
+
+  async inactivate(student: Student): Promise<void> {
+    student.Inactivated = true
+
+    await this.ormRepository.save(student)
+  }
 }
