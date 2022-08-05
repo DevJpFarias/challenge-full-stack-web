@@ -22,6 +22,7 @@ describe('Create Student Test', () => {
     const student = await createStudentsService.execute(data)
 
     expect(student).toHaveProperty('id')
+    expect(student).toHaveProperty('inactivated', false)
   })
 
   it('Should not be able to create a new student with an existent email', async () => {
