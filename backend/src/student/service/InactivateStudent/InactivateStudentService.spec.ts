@@ -13,7 +13,7 @@ describe('Inactivate Student Test', () => {
     inactivateStudentService = new InactivateStudentService(fakeStudentsRepository)
   })
 
-  it('Should be able to delete a student', async () => {
+  it('Should be able to inactivate a student', async () => {
     const data = {
       name: 'Fulano',
       email: 'fulano@mail.com',
@@ -25,6 +25,6 @@ describe('Inactivate Student Test', () => {
 
     await inactivateStudentService.execute(student.id)
 
-    expect(student).toHaveProperty('Inactivated', true)
+    expect(student).toHaveProperty('inactivated', true)
   })
 })
