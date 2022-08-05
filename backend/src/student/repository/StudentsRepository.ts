@@ -59,4 +59,20 @@ export class StudentsRepository implements IStudentsRepository {
 
     return students
   }
+
+  async update(student: Student): Promise<Student> {
+    await this.ormRepository.save(student)
+
+    return student
+  }
+
+  async findById(id: string): Promise<Student> {
+    const student = await this.ormRepository.findOne({
+      where: {
+        id
+      }
+    })
+
+    return student
+  }
 }

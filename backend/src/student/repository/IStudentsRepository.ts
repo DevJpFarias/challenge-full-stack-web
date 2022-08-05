@@ -7,4 +7,6 @@ export interface IStudentsRepository {
   findByRA(RA: number): Promise<Student>
   findByCPF(CPF: string): Promise<Student>
   listAll(): Promise<Student[]>
+  update(student: Student): Promise<Student>
+  findById(id: string): Promise<Student>
 }
