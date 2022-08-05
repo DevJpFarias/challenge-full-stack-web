@@ -29,6 +29,11 @@ export class CreateStudent1659539006027 implements MigrationInterface {
                     {
                         name: 'CPF',
                         type: 'varchar'
+                    },
+                    {
+                        name: 'Inactivated',
+                        type: 'boolean',
+                        default: false
                     }
                 ]
             })

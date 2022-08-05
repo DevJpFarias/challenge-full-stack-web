@@ -8,6 +8,7 @@ export class UpdateStudentService {
 
   constructor(repository: IStudentsRepository) {
     this.studentsRepository = repository
+    
     if(!repository) {
       this.studentsRepository = new StudentsRepository()
     }
