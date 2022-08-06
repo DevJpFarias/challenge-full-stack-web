@@ -7,9 +7,7 @@ export class InactivateStudentService {
 
   constructor (repository: IStudentsRepository) {
     this.studentsRepository = repository
-    if(!repository) {
-      this.studentsRepository = new StudentsRepository()
-    }
+    if(!repository) this.studentsRepository = new StudentsRepository()
   }
 
   async execute(id: string): Promise<void> {

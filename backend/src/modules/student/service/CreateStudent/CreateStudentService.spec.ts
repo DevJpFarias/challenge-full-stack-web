@@ -1,14 +1,20 @@
 import { CreateStudentService } from "./CreateStudentService"
 import { FakeStudentsRepository } from "../../repositories/fakes/FakeStudentsRepository"
 import { AppError } from "../../../../shared/errors/AppError"
+import { FakeUsersRepository } from "../../../user/repositories/fakes/FakeUsersRepository"
+import { CreateUserService } from "../../../user/service/createUser/CreateUserService"
 
 let fakeStudentsRepository: FakeStudentsRepository
+let fakeUsersRepository: FakeUsersRepository
 let createStudentsService: CreateStudentService
+let createUserService: CreateUserService
 
 describe('Create Student Test', () => {
   beforeEach(() => {
     fakeStudentsRepository = new FakeStudentsRepository()
-    createStudentsService = new CreateStudentService(fakeStudentsRepository)
+    fakeUsersRepository = new FakeUsersRepository()
+    createStudentsService = new CreateStudentService(fakeStudentsRepository, fakeUsersRepository)
+    createUserService = new CreateUserService(fakeUsersRepository, fakeStudentsRepository)
   })
 
   it('Should be able to create a new student', async () => {
@@ -43,6 +49,27 @@ describe('Create Student Test', () => {
 
       await createStudentsService.execute(first_data)
       await createStudentsService.execute(second_data)
+
+    }).rejects.toBeInstanceOf(AppError)
+  })
+
+  it('Should not be able to create a new student with an existent email (user)', async () => {
+    expect(async () => {
+      const user_data = {
+        name: 'Fulano',
+        email: 'fulano@mail.com',
+        password: '12345'
+      }
+
+      const student_data = {
+        name: 'João Paulo',
+        email: 'fulano@mail.com',
+        RA: 4321,
+        CPF: '999.888.999-88'
+      }
+
+      await createUserService.execute(user_data)
+      await createStudentsService.execute(student_data)
 
     }).rejects.toBeInstanceOf(AppError)
   })

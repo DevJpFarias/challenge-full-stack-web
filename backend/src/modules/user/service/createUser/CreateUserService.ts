@@ -16,23 +16,19 @@ export class CreateUserService {
     this.usersRepository = usersRepository
     this.studentsRepository = studentsRepository
 
-    if(!usersRepository) {
-      this.usersRepository = new UsersRepository()
-    }
+    if(!usersRepository) this.usersRepository = new UsersRepository()
 
-    if(!studentsRepository) {
-      this.studentsRepository = new StudentsRepository()
-    }
+    if(!studentsRepository) this.studentsRepository = new StudentsRepository()
   }
 
   async execute({ name, email, password }: ICreateUserDTO) {
     const findStudent = await this.studentsRepository.findByEmail(email)
 
-    if(findStudent) throw new AppError('This email is not available!')
+    if(findStudent) throw new AppError('This email is already used!')
     
     const findUser = await this.usersRepository.findByEmail(email)
 
-    if(findUser) throw new AppError('This email is not available!')
+    if(findUser) throw new AppError('This email is already used!')
 
     const user = await this.usersRepository.create({
       name,

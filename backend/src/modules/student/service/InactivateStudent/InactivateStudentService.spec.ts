@@ -1,15 +1,18 @@
+import { FakeUsersRepository } from "../../../user/repositories/fakes/FakeUsersRepository"
 import { FakeStudentsRepository } from "../../repositories/fakes/FakeStudentsRepository"
 import { CreateStudentService } from "../CreateStudent/CreateStudentService"
 import { InactivateStudentService } from "./InactivateStudentService"
 
 let fakeStudentsRepository: FakeStudentsRepository
+let fakeUsersRepository: FakeUsersRepository
 let createStudentsService: CreateStudentService
 let inactivateStudentService: InactivateStudentService
 
 describe('Inactivate Student Test', () => {
   beforeEach(() => {
     fakeStudentsRepository = new FakeStudentsRepository()
-    createStudentsService = new CreateStudentService(fakeStudentsRepository)
+    fakeUsersRepository = new FakeUsersRepository()
+    createStudentsService = new CreateStudentService(fakeStudentsRepository, fakeUsersRepository)
     inactivateStudentService = new InactivateStudentService(fakeStudentsRepository)
   })
 

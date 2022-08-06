@@ -1,17 +1,23 @@
 import { AppError } from "../../../../shared/errors/AppError"
+import { FakeUsersRepository } from "../../../user/repositories/fakes/FakeUsersRepository"
+import { CreateUserService } from "../../../user/service/createUser/CreateUserService"
 import { FakeStudentsRepository } from "../../repositories/fakes/FakeStudentsRepository"
 import { CreateStudentService } from "../CreateStudent/CreateStudentService"
 import { UpdateStudentService } from "./UpdateStudentService"
 
 let fakeStudentsRepository: FakeStudentsRepository
+let fakeUsersRepository: FakeUsersRepository
 let createStudentsService: CreateStudentService
+let createUserService: CreateUserService
 let updateStudentService: UpdateStudentService
 
 describe('Update Student Test', () => {
   beforeEach(() => {
     fakeStudentsRepository = new FakeStudentsRepository()
-    createStudentsService = new CreateStudentService(fakeStudentsRepository)
-    updateStudentService = new UpdateStudentService(fakeStudentsRepository)
+    fakeUsersRepository = new FakeUsersRepository()
+    createStudentsService = new CreateStudentService(fakeStudentsRepository, fakeUsersRepository)
+    createUserService = new CreateUserService(fakeUsersRepository, fakeStudentsRepository)
+    updateStudentService = new UpdateStudentService(fakeStudentsRepository, fakeUsersRepository)
   })
 
   it('Should be able to update a student', async () => {
@@ -78,6 +84,39 @@ describe('Update Student Test', () => {
         id: first_student.id,
         name: 'João Paulo',
         email: second_student.email
+      }
+
+      await updateStudentService.execute(
+        update_data.id,
+        update_data.name,
+        update_data.email
+      )
+    
+    }).rejects.toBeInstanceOf(AppError)
+  })
+
+  it('Should not be able to update the email of student if this email is already used (user)', async () => {
+    expect(async () => {
+      const user_data = {
+        name: 'Fulano',
+        email: 'fulano@mail.com',
+        password: '12345'
+      }
+
+      const student_data = {
+        name: 'João Paulo',
+        email: 'joaopaulo2@mail.com',
+        RA: 4321,
+        CPF: '999.999.999-99'
+      }
+
+      const user = await createUserService.execute(user_data)
+      const student = await createStudentsService.execute(student_data)
+
+      const update_data = {
+        id: student.id,
+        name: 'João Paulo',
+        email: user.email
       }
 
       await updateStudentService.execute(

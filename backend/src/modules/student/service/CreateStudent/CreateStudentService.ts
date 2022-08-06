@@ -3,16 +3,20 @@ import { ICreateStudentDTO } from "../../dto/ICreateStudentDTO";
 import { IStudentsRepository } from "../../repositories/IStudentsRepository";
 import { StudentsRepository } from "../../infra/typeorm/repositories/StudentsRepository";
 import { AppError } from "../../../../shared/errors/AppError";
+import { IUsersRepository } from "../../../user/repositories/IUsersRepository";
+import { UsersRepository } from "../../../user/infra/typeorm/repositories/UsersRepository";
 
 export class CreateStudentService {
   private studentsRepository: IStudentsRepository
+  private usersRepository: IUsersRepository
 
-  constructor(repository: IStudentsRepository) {
-    this.studentsRepository = repository
+  constructor(studentsRepository: IStudentsRepository, usersRepository: IUsersRepository) {
+    this.studentsRepository = studentsRepository
+    this.usersRepository = usersRepository
     
-    if(!repository) {
-      this.studentsRepository = new StudentsRepository()
-    }
+    if(!studentsRepository) this.studentsRepository = new StudentsRepository()
+
+    if (!usersRepository) this.usersRepository = new UsersRepository()
   }
 
   async execute({
@@ -21,6 +25,10 @@ export class CreateStudentService {
     RA,
     CPF
   }: ICreateStudentDTO): Promise<Student> {
+    const findUserByEmail = await this.usersRepository.findByEmail(email)
+
+    if(findUserByEmail) throw new AppError('This email is already used')
+
     const findStudentByEmail = await this.studentsRepository.findByEmail(email)
 
     if(findStudentByEmail) throw new AppError('This email is already used')

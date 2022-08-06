@@ -2,16 +2,20 @@ import { AppError } from "../../../../shared/errors/AppError";
 import { Student } from "../../infra/typeorm/entity/Student";
 import { IStudentsRepository } from "../../repositories/IStudentsRepository";
 import { StudentsRepository } from "../../infra/typeorm/repositories/StudentsRepository";
+import { IUsersRepository } from "../../../user/repositories/IUsersRepository";
+import { UsersRepository } from "../../../user/infra/typeorm/repositories/UsersRepository";
 
 export class UpdateStudentService {
   private studentsRepository: IStudentsRepository
+  private usersRepository: IUsersRepository
 
-  constructor(repository: IStudentsRepository) {
-    this.studentsRepository = repository
+  constructor(studentsRepository: IStudentsRepository, usersRepository: IUsersRepository) {
+    this.studentsRepository = studentsRepository
+    this.usersRepository = usersRepository
     
-    if(!repository) {
-      this.studentsRepository = new StudentsRepository()
-    }
+    if(!studentsRepository) this.studentsRepository = new StudentsRepository()
+
+    if(!usersRepository) this.usersRepository = new UsersRepository()
   }
 
   async execute(
@@ -30,9 +34,11 @@ export class UpdateStudentService {
     if(CPF) throw new AppError('The CPF cannot be edited!')
 
     if(email) {
-      const findByEmail = await this.studentsRepository.findByEmail(email)
+      const findUserByEmail = await this.usersRepository.findByEmail(email)
+      const findStudentByEmail = await this.studentsRepository.findByEmail(email)
 
-      if(findByEmail) throw new AppError('This email is not available!')
+      if(findUserByEmail) throw new AppError('This email is not available!')
+      if(findStudentByEmail) throw new AppError('This email is not available!')
     }
 
     student.name = name

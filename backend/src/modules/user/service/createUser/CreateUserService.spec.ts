@@ -14,7 +14,7 @@ describe('Create User Test', () => {
     fakeUsersRepository = new FakeUsersRepository()
     fakeStudentsRepository = new FakeStudentsRepository()
     createUserService = new CreateUserService(fakeUsersRepository, fakeStudentsRepository)
-    createStudentsService = new CreateStudentService(fakeStudentsRepository)
+    createStudentsService = new CreateStudentService(fakeStudentsRepository, fakeUsersRepository)
   })
 
   it('Should be able to create a new user', async () => {
