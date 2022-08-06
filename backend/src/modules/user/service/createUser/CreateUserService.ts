@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt'
 import { AppError } from "../../../../shared/errors/AppError";
 import { StudentsRepository } from "../../../student/infra/typeorm/repositories/StudentsRepository";
 import { IStudentsRepository } from "../../../student/repositories/IStudentsRepository";
@@ -30,10 +31,12 @@ export class CreateUserService {
 
     if(findUser) throw new AppError('This email is already used!')
 
+    const passwordHash = await hash(password, 8)
+
     const user = await this.usersRepository.create({
       name,
       email,
-      password
+      password: passwordHash
     })
 
     return user
