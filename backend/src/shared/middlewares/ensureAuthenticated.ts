@@ -15,7 +15,7 @@ export async function ensureAuthenticated(request: Request, response: Response, 
 	const [, token] = authHeader.split(' ')
 
 	try {
-		const { sub: user_id } = verify(token, '9a995dcc78cda3b260931850c486a6ba') as IPayload
+		const { sub: user_id } = verify(token, '5344b9b3d41d46dbf752863bcd11789e') as IPayload
 		
 		const usersRepository = new UsersRepository()
 		const user = await usersRepository.findById(user_id)

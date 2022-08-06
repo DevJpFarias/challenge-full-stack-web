@@ -4,8 +4,8 @@
    "main": "index.js",
    "license": "MIT",
    "scripts": {
-      "dev": "ts-node-dev src/server.ts",
-      "test": "jest",
+      "dev": "ts-node-dev --files src/server.ts",
+      "test": "jest --silent",
       "start": "ts-node src/index.ts",
       "typeorm": "typeorm-ts-node-commonjs",
       "seed:admin": "ts-node-dev src/shared/seed/admin.ts"
