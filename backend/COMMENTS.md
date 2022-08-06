@@ -6,12 +6,14 @@
 *Lista de bibliotecas de terceiros utilizadas*
 -> "express-sync-erros" = Utilizei para resolver os erros com as promises que ocorriam no método de tratar erros
 -> jest = Utilizei para fazer os testes unitários
+-> bcrypt = Utilizei para criptografar a senha do usuário
+-> jsonwebtoken = utilizei para criar os tokens com segurança
 
 *O que você melhoraria se tivesse mais tempo*
 
--> Fazia teste integrais
+-> Faria teste integrais
 -> Faria um método para automatizar os testes ao fazer commits e não deixar passar caso ocorram erros
 -> Mudar o modo como o CPF é mostrado na listagem de alunos, mostrando apenas uma parte
 
 *Quais requisitos obrigatórios que não foram entregues*
--> Não sei =(
+-> Documentação da arquitetura de solução: Não entendi.
