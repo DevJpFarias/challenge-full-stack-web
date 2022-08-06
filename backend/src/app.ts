@@ -3,7 +3,7 @@ import 'express-async-errors'
 import express, { NextFunction, Request, Response } from 'express'
 import { studentRouter } from './modules/student/infra/http/routes/student.routes'
 import { AppDataSource } from './shared/connections/data-source'
-import { AppError } from './shared/erros/AppError'
+import { AppError } from './shared/errors/AppError'
 
 AppDataSource.initialize()
 

@@ -1,8 +1,8 @@
-import { ICreateStudentDTO } from "../dto/ICreateStudentDTO";
-import { IStudentsRepository } from "./IStudentsRepository";
-import { Student } from "../infra/typeorm/entity/Student";
+import { ICreateStudentDTO } from "../../dto/ICreateStudentDTO";
+import { IStudentsRepository } from "../IStudentsRepository";
+import { Student } from "../../infra/typeorm/entity/Student";
 import { randomUUID } from 'node:crypto'
-import { IUpdateStudentDTO } from "../dto/IUpdateStudentDTO";
+import { IUpdateStudentDTO } from "../../dto/IUpdateStudentDTO";
 
 export class FakeStudentsRepository implements IStudentsRepository {
   private repository: Student[] = []

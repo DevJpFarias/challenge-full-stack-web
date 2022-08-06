@@ -1,5 +1,5 @@
-import { AppError } from "../../../../shared/erros/AppError"
-import { FakeStudentsRepository } from "../../repositories/FakeStudentsRepository"
+import { AppError } from "../../../../shared/errors/AppError"
+import { FakeStudentsRepository } from "../../repositories/fakes/FakeStudentsRepository"
 import { CreateStudentService } from "../CreateStudent/CreateStudentService"
 import { UpdateStudentService } from "./UpdateStudentService"
 

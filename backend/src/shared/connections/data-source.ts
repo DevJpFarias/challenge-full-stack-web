@@ -11,6 +11,6 @@ export const AppDataSource = new DataSource({
     database: "challenge-full-stack-web",
     entities: [Student],
     migrations: [
-        'src/migration/*.ts'
+        'src/shared/migrations/*.ts'
     ]
 })

@@ -1,6 +1,6 @@
 import { CreateStudentService } from "./CreateStudentService"
-import { FakeStudentsRepository } from "../../repositories/FakeStudentsRepository"
-import { AppError } from "../../../../shared/erros/AppError"
+import { FakeStudentsRepository } from "../../repositories/fakes/FakeStudentsRepository"
+import { AppError } from "../../../../shared/errors/AppError"
 
 let fakeStudentsRepository: FakeStudentsRepository
 let createStudentsService: CreateStudentService

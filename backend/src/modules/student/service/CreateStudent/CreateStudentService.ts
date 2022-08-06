@@ -2,7 +2,7 @@ import { Student } from "../../infra/typeorm/entity/Student";
 import { ICreateStudentDTO } from "../../dto/ICreateStudentDTO";
 import { IStudentsRepository } from "../../repositories/IStudentsRepository";
 import { StudentsRepository } from "../../infra/typeorm/repositories/StudentsRepository";
-import { AppError } from "../../../../shared/erros/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 
 export class CreateStudentService {
   private studentsRepository: IStudentsRepository
