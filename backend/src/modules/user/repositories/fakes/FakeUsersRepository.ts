@@ -1,4 +1,4 @@
-import { User } from "../../infra/typeorm/entity/Entity";
+import { User } from "../../infra/typeorm/entity/User";
 import { ICreateUserDTO } from "../../dto/ICreateUserDTO";
 import { IUsersRepository } from "../IUsersRepository";
 import { randomUUID } from "crypto";
@@ -29,5 +29,9 @@ export class FakeUsersRepository implements IUsersRepository {
 
   async findById(id: string): Promise<User> {
     return this.repository.find(user => user.id === id)
+  }
+
+  async findByEmail(email: string): Promise<User> {
+    return this.repository.find(user => user.email === email)
   }
 }
