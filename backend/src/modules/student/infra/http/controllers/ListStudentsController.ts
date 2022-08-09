@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { StudentsRepository } from "../../typeorm/repositories/StudentsRepository";
 import { ListStudentsService } from "../../../service/ListStudents/ListStudentsService";
+import { instanceToInstance } from "class-transformer";
 
 const studentsRepository = new StudentsRepository()
 
@@ -10,6 +11,6 @@ export class ListStudentsController {
 
     const students = await listStudentsService.execute()
 
-    return response.status(200).json(students)
+    return response.status(200).json({students: instanceToInstance(students)})
   }
 }

@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import { StudentsRepository } from "../../../../student/infra/typeorm/repositories/StudentsRepository";
 import { CreateUserService } from '../../../service/createUser/CreateUserService'
@@ -18,6 +19,6 @@ export class CreateUserController {
       password
     })
 
-    return response.status(201).json(user)
+    return response.status(201).json({user: instanceToInstance(user)})
   }
 }

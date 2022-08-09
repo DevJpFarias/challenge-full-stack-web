@@ -27,7 +27,8 @@ export class StudentsRepository implements IStudentsRepository {
   async findByEmail(email: string): Promise<Student> {
     const student = await this.ormRepository.findOne({
       where: {
-        email
+        email,
+        inactivated: false
       }
     })
 
@@ -37,7 +38,8 @@ export class StudentsRepository implements IStudentsRepository {
   async findByRA(RA: number): Promise<Student> {
     const student = await this.ormRepository.findOne({
       where: {
-        RA
+        RA,
+        inactivated: false
       }
     })
 
@@ -47,7 +49,8 @@ export class StudentsRepository implements IStudentsRepository {
   async findByCPF(CPF: string): Promise<Student> {
     const student = await this.ormRepository.findOne({
       where: {
-        CPF
+        CPF,
+        inactivated: false
       }
     })
 
@@ -73,7 +76,8 @@ export class StudentsRepository implements IStudentsRepository {
   async findById(id: string): Promise<Student> {
     const student = await this.ormRepository.findOne({
       where: {
-        id
+        id,
+        inactivated: false
       }
     })
 

@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import { AuthenticateUserService } from "../../../service/AuthenticateUser/AuthenticateUserService";
 import { UsersRepository } from "../../typeorm/repositories/UsersRepository";
@@ -15,6 +16,6 @@ export class AuthenticateUserController {
       password
     })
 
-    return response.status(200).json(authenticate)
+    return response.status(200).json({authenticate: instanceToInstance(authenticate)})
   }
 }

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { StudentsRepository } from "../../typeorm/repositories/StudentsRepository";
 import { UpdateStudentService } from "../../../service/UpdateStudent/UpdateStudentService";
 import { UsersRepository } from "../../../../user/infra/typeorm/repositories/UsersRepository";
+import { instanceToInstance } from "class-transformer";
 
 const studentsRepository = new StudentsRepository()
 const usersRepository = new UsersRepository()
@@ -13,7 +14,7 @@ export class UpdateStudentController {
 
     const updateStudentService = new UpdateStudentService(studentsRepository, usersRepository)
 
-    const update_student = await updateStudentService.execute(
+    const student = await updateStudentService.execute(
       id,
       name,
       email,
@@ -21,6 +22,6 @@ export class UpdateStudentController {
       CPF
     )
 
-    return response.status(201).json(update_student)
+    return response.status(201).json({student: instanceToInstance(student)})
   }
 }

@@ -30,7 +30,8 @@ export class UsersRepository implements IUsersRepository {
   async findById(id: string): Promise<User> {
     return this.ormRepository.findOne({
       where: {
-        id
+        id,
+        inactivated: false
       }
     })
   }
@@ -38,7 +39,8 @@ export class UsersRepository implements IUsersRepository {
   async findByEmail(email: string): Promise<User> {
     return this.ormRepository.findOne({
       where: {
-        email
+        email,
+        inactivated: false
       }
     })
   }
