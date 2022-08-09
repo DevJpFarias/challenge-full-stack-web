@@ -1,0 +1,350 @@
+{
+  "openapi": "3.0.0",
+    "info": {
+        "title": "Challenge Full Stack Web Documentation",
+        "description": "This is an API Rest",
+        "version": "1.0.0",
+        "contact": {
+            "email": "joaopfc2764@gmail.com"
+        }
+    },
+    "servers": [
+      { "url": "http://localhost:4000", "description": "API de teste" }
+    ],
+    "paths": {
+      "/students": {
+        "post": {
+          "tags": ["Students"],
+          "security": [
+            { "bearerAuth": [] }
+          ],
+          "summary": "Create Student",
+          "description": "Create a new Student",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "RA": {
+                      "type": "number"
+                    },
+                    "CPF": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "name": "Fulano",
+                    "email": "fulano@mail.com",
+                    "RA": 9999,
+                    "CPF": "999.999.999-99"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/definitions/schemas/Student"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": {
+                      "status": "error",
+                      "message": "This email is already used"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": ["Students"],
+          "security": [
+            { "bearerAuth": [] }
+          ],
+          "summary": "Get Students",
+          "description": "List All Students",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": []
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/students/update/{id}": {
+        "patch": {
+          "tags": ["Students"],
+          "security": [
+            { "bearerAuth": [] }
+          ],
+          "summary": "Update Student",
+          "description": "Update name and email of Student",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Student id",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/schemas/Student"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": {
+                      "status": "error",
+                      "message": "This email is not available!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/students/inactivate/{id}": {
+        "delete": {
+          "tags": ["Students"],
+          "security": [
+            { "bearerAuth": [] }
+          ],
+          "summary": "Delete Student",
+          "description": "Inactivate an student",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Student id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content"
+            }
+          }
+        }
+      },
+      "/users": {
+        "post": {
+          "tags": ["Users"],
+          "summary": "Create User",
+          "description": "Create a new User",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "name": "Fulano",
+                    "email": "fulano@mail.com",
+                    "password": "12345"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/schemas/User"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": {
+                      "status": "error",
+                      "message": "This email is already used!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/session": {
+        "post": {
+          "tags": ["Users"],
+          "summary": "Login",
+          "description": "Login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "email": "fulano@mail.com",
+                    "password": "12345"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/schemas/Login"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "schemas": {
+        "Student": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "RA": {
+              "type": "number"
+            },
+            "CPF": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "isAdmin": {
+              "type": "boolean"
+            }
+          }
+        },
+        "Login": {
+          "type": "object",
+          "properties": {
+            "authorization": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "$ref": "#/definitions/schemas/User"
+                },
+                "token": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+        }
+      }
+    }
+}
