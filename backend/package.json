@@ -6,16 +6,17 @@
    "scripts": {
       "dev": "ts-node-dev --files src/server.ts",
       "test": "jest --silent",
-      "start": "ts-node src/index.ts",
       "typeorm": "typeorm-ts-node-commonjs",
       "seed:admin": "ts-node-dev src/shared/seed/admin.ts"
    },
    "dependencies": {
+      "@types/swagger-ui-express": "^4.1.3",
       "bcrypt": "^5.0.1",
       "express": "^4.18.1",
       "jsonwebtoken": "^8.5.1",
       "pg": "^8.4.0",
       "reflect-metadata": "^0.1.13",
+      "swagger-ui-express": "^4.5.0",
       "typeorm": "0.3.7"
    },
    "devDependencies": {
@@ -24,11 +25,11 @@
       "@types/jest": "^28.1.6",
       "@types/jsonwebtoken": "^8.5.8",
       "@types/node": "^16.11.10",
+      "class-transformer": "^0.5.1",
       "express-async-errors": "^3.1.1",
       "git-commit-msg-linter": "^4.1.3",
       "jest": "^28.1.3",
       "ts-jest": "^28.0.7",
-      "ts-node": "10.7.0",
       "ts-node-dev": "^2.0.0",
       "typescript": "4.5.2"
    }
